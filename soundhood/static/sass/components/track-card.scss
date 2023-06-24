@@ -1,0 +1,40 @@
+.track-card {
+  --album-width: 72px;
+  display: flex;
+  font-size: var(--fs-sm);
+  gap: 1rem;
+  align-items: center;
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__info-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__name {
+    font-size: var(--fs-m);
+  }
+
+  &__artist,
+  &__album {
+    color: var(--text-clr);
+    font-weight: var(--fw-medium);
+  }
+
+  &__icon-artist,
+  &__icon-album {
+    color: var(--text-clr);
+  }
+
+  &__album-cover {
+    width: var(--album-width);
+    min-width: var(--album-width);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,14 @@
+.user-hymn {
+  & > * + * {
+    margin-top: 1em;
+  }
+  &__heading {
+    font-size: var(--fs-xl);
+  }
+
+  &__divider {
+    opacity: 0.2;
+    color: var(--slate-400);
+    background-color: var(--slate-400);
+  }
+}

@@ -1,0 +1,29 @@
+.userbio {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 2rem;
+  align-items: end;
+
+  &__info {
+    display: grid;
+    gap: 1em;
+  }
+
+  &__name {
+    font-size: var(--fs-4xl);
+    font-weight: var(--fw-xbold);
+    color: var(--slate-100);
+  }
+
+  &__age {
+    background-color: #f365a7;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    width: fit-content;
+    font-size: var(--fs-m);
+  }
+
+  &__country {
+    font-size: var(--fs-m);
+  }
+}

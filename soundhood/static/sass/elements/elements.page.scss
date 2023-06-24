@@ -1,0 +1,58 @@
+@use "../abstracts/" as *;
+
+body {
+  color: var(--foreground-clr);
+  background-color: var(--background-clr);
+  font-family: "Inter";
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1 {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-xbold);
+
+  @media (min-width: 600px) {
+    font-size: var(--fs-3xl);
+  }
+}
+
+h2 {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+
+  @media (min-width: 600px) {
+    font-size: var(--fs-2xl);
+  }
+}
+
+h3 {
+  font-size: var(--fs-l);
+  font-weight: var(--fw-medium);
+
+  @media (min-width: 600px) {
+    font-size: var(--fs-xl);
+  }
+}
+
+label {
+  font-weight: var(--fw-medium);
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--slate-600);
+  border-radius: 10px;
+}

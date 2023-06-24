@@ -1,0 +1,68 @@
+@use "sass:color";
+
+.button {
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  font-size: var(--fs-m);
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition-property: color;
+  transition-duration: 0.15s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  outline-offset: 1px;
+
+  &__default {
+    color: var(--background-clr);
+    background-color: var(--foreground-clr);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--foreground-clr);
+    outline-offset: 2px;
+  }
+
+  &__rounded {
+    border-radius: 9999px;
+  }
+
+  &__outline {
+    background-color: transparent;
+    color: var(--foreground-clr);
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--foreground-clr);
+  }
+}
+
+/*
+.button {
+  font-weight: 900;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-block: 1em;
+  border-radius: 0.6rem;
+  transition: all 0.15s;
+
+  &[data-type="primary"] {
+    background-color: var(--primary-bright-blue);
+    color: #fff;
+    box-shadow: 0px 10px 20px 0px hsla(245, 75%, 52%, 0.6);
+
+    &:hover {
+      background-color: color.scale(hsl(245, 75%, 52%), $lightness: 32%);
+    }
+  }
+
+  &[data-type="naked"] {
+    &:hover {
+      color: var(--neutral-blue-900);
+    }
+  }
+}
+
+*/

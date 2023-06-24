@@ -1,0 +1,26 @@
+.input {
+  background-color: inherit;
+  color: var(--foreground-clr);
+  border: 2px solid var(--slate-600);
+  border-radius: 0.25rem;
+  padding: 0.5rem 0.5rem;
+
+  &_date {
+    background-image: url(../images/calendar-line.svg);
+    background-repeat: no-repeat;
+    background-position: 98% 55%;
+
+    &::-webkit-inner-spin-button {
+      display: none;
+    }
+
+    &::-webkit-calendar-picker-indicator {
+      opacity: 0;
+    }
+  }
+
+  &:focus {
+    outline: 2px solid var(--foreground-clr);
+    //border-color: var(--foreground-clr);
+  }
+}

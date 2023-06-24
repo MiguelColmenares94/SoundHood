@@ -1,0 +1,17 @@
+.card-swipper {
+  height: 70vh;
+  max-width: min(450px, 100%);
+  aspect-ratio: 2 / 3;
+  perspective: 1000px;
+  perspective-origin: center 50%;
+  transform-style: preserve-3d;
+  position: relative;
+
+  &__card {
+    position: absolute;
+    width: 100%;
+    transform: translateZ(calc(-30px * var(--i)));
+    cursor: pointer;
+    user-select: none;
+  }
+}

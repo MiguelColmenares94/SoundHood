@@ -1,0 +1,10 @@
+.label {
+  &__info {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-light);
+    color: var(--slate-400);
+  }
+  &:focus-within {
+    color: var(--foreground-clr);
+  }
+}

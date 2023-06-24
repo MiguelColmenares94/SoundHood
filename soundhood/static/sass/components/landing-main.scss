@@ -1,0 +1,11 @@
+.landing-main {
+  text-align: center;
+
+  & > * + * {
+    margin-top: 6rem;
+  }
+
+  &__cta {
+    font-size: 1rem;
+  }
+}

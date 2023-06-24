@@ -1,0 +1,69 @@
+body,
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+i,
+p,
+pre {
+  margin: 0;
+}
+
+i {
+  line-height: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+textarea,
+button,
+select {
+  font: inherit;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* 
+  Specifies the scrolling behavior for a scrolling element, when scrolling occurs due to  navigation or CSSOM APIs. (Opinionated, added by mavix21)
+  */
+html:focus-within {
+  scroll-behavior: smooth;
+}

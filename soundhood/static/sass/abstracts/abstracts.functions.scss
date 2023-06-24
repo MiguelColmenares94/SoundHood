@@ -1,0 +1,4 @@
+// This function takes a pixel value and returns its equivalent in rems
+@function rem($pixels, $content: 16) {
+  @return calc($pixels / $content) * 1rem;
+}
