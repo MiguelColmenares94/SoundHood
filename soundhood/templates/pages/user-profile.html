@@ -1,0 +1,167 @@
+{% extends "../base/app-base.html" %}
+
+<!-- Title -->
+{% block title %}Home{% endblock %}
+
+<!-- Home -->
+{% block main %}
+<section class="app__user userbio">
+  <figure class="user-pfp">
+    <img class="user-pfp__img" id="user-pfp" src="./images/pfp_1.jpg" alt="" />
+  </figure>
+
+  <article class="userbio__info">
+    <h2 class="userbio__name">Sophia</h2>
+    <p class="userbio__country"><i class="ri-map-pin-line"></i> Peru</p>
+    <p class="userbio__age"><i class="ri-women-line"></i> 24</p>
+  </article>
+</section>
+<div class="like">
+  <button class="button button__outline app__like-btn">
+    <i class="ri-heart-3-line ri-xl"></i> Follow
+  </button>
+</div>
+<div class="app__user-tracks">
+  <section class="app__user-top-tracks top-tracks">
+    <h2 class="top-tracks__heading">Top tracks</h2>
+    <hr class="top-tracks__divider" />
+    <div class="track-card">
+      <div class="track-card__album-cover">
+        <img src="./images/brokenmachine_nbt.jpg" alt="" />
+      </div>
+      <div class="track-card__info">
+        <div class="track-card__info-container">
+          <i class="ri-headphone-line"></i>
+          <h3 class="track-card__name">Broken Machine</h3>
+        </div>
+        <div class="track-card__info-container">
+          <i class="ri-user-line track-card__icon-artist"></i>
+          <p class="track-card__artist">Nothing But Thieves</p>
+        </div>
+        <div class="track-card__info-container">
+          <i class="ri-album-line track-card__icon-album"></i>
+          <p class="track-card__album">Broken Machine (Deluxe)</p>
+        </div>
+      </div>
+    </div>
+    <div class="track-card">
+      <div class="track-card__album-cover">
+        <img src="./images/oos_muse.jpg" alt="" />
+      </div>
+      <div class="track-card__info">
+        <div class="track-card__info-container">
+          <i class="ri-headphone-line"></i>
+          <h3 class="track-card__name">Megalomania</h3>
+        </div>
+        <div class="track-card__info-container">
+          <i class="ri-user-line track-card__icon-artist"></i>
+          <p class="track-card__artist">Muse</p>
+        </div>
+        <div class="track-card__info-container">
+          <i class="ri-album-line track-card__icon-album"></i>
+          <p class="track-card__album">Origin of Symmetry</p>
+        </div>
+      </div>
+    </div>
+    <div class="track-card">
+      <div class="track-card__album-cover">
+        <img src="./images/brokenmachine_nbt.jpg" alt="" />
+      </div>
+      <div class="track-card__info">
+        <div class="track-card__info-container">
+          <i class="ri-headphone-line"></i>
+          <h3 class="track-card__name">Broken Machine</h3>
+        </div>
+        <div class="track-card__info-container">
+          <i class="ri-user-line track-card__icon-artist"></i>
+          <p class="track-card__artist">Nothing But Thieves</p>
+        </div>
+        <div class="track-card__info-container">
+          <i class="ri-album-line track-card__icon-album"></i>
+          <p class="track-card__album">Broken Machine (Deluxe)</p>
+        </div>
+      </div>
+    </div>
+    <div class="track-card">
+      <div class="track-card__album-cover">
+        <img src="./images/Theresistance.jpg" alt="" />
+      </div>
+      <div class="track-card__info">
+        <div class="track-card__info-container">
+          <i class="ri-headphone-line"></i>
+          <h3 class="track-card__name">Broken Machine</h3>
+        </div>
+        <div class="track-card__info-container">
+          <i class="ri-user-line track-card__icon-artist"></i>
+          <p class="track-card__artist">Nothing But Thieves</p>
+        </div>
+        <div class="track-card__info-container">
+          <i class="ri-album-line track-card__icon-album"></i>
+          <p class="track-card__album">Broken Machine (Deluxe)</p>
+        </div>
+      </div>
+    </div>
+    <div class="track-card">
+      <div class="track-card__album-cover">
+        <img src="./images/willolfthepeople_muse.webp" alt="" />
+      </div>
+      <div class="track-card__info">
+        <div class="track-card__info-container">
+          <i class="ri-headphone-line"></i>
+          <h3 class="track-card__name">Verona</h3>
+        </div>
+        <div class="track-card__info-container">
+          <i class="ri-user-line track-card__icon-artist"></i>
+          <p class="track-card__artist">Muse</p>
+        </div>
+        <div class="track-card__info-container">
+          <i class="ri-album-line track-card__icon-album"></i>
+          <p class="track-card__album">Will of the People</p>
+        </div>
+      </div>
+    </div>
+    <div class="track-card">
+      <div class="track-card__album-cover">
+        <img src="./images/brokenmachine_nbt.jpg" alt="" />
+      </div>
+      <div class="track-card__info">
+        <div class="track-card__info-container">
+          <i class="ri-headphone-line"></i>
+          <h3 class="track-card__name">Broken Machine</h3>
+        </div>
+        <div class="track-card__info-container">
+          <i class="ri-user-line track-card__icon-artist"></i>
+          <p class="track-card__artist">Nothing But Thieves</p>
+        </div>
+        <div class="track-card__info-container">
+          <i class="ri-album-line track-card__icon-album"></i>
+          <p class="track-card__album">Broken Machine (Deluxe)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="app__user-hymn user-hymn">
+    <h2 class="user-hymn__heading">My Hymn</h2>
+    <hr class="user-hymn__divider" />
+    <div class="track-card">
+      <div class="track-card__album-cover">
+        <img src="./images/oos_muse.jpg" alt="" />
+      </div>
+      <div class="track-card__info">
+        <div class="track-card__info-container">
+          <i class="ri-headphone-line"></i>
+          <h3 class="track-card__name">Megalomania</h3>
+        </div>
+        <div class="track-card__info-container">
+          <i class="ri-user-line track-card__icon-artist"></i>
+          <p class="track-card__artist">Muse</p>
+        </div>
+        <div class="track-card__info-container">
+          <i class="ri-album-line track-card__icon-album"></i>
+          <p class="track-card__album">Origin of Symmetry</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock main %}
