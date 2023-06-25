@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- meta tags -->
+    {% include '../includes/meta.html' %}
+
+    <!-- links -->
+    {% include '../includes/links.html' %}
+
+    <!-- scripts -->
+    {% inclue '../includes/scripts.html' %}
+
+    <!-- Page Title -->
+    <title>SoundHood - {% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <div class="app">
+      <!-- Header -->
+      {% include '../includes/app-header.html' %}
+
+      <!-- Sidebar -->
+      {% include '../includes/app-sidebar.html' %}
+      <main class="app__main" id="dynamic-gradient">
+        {% block main %} {% endblock %}
+        <div class="app__section">
+          <h2>Soundmates</h2>
+          <a href="#" class="app__show-more">Show more</a>
+        </div>
+        <hr class="user-hymn__divider" />
+        <div class="app__cards-wrapper" id="cards-wrapper">
+          <article class="user-card">
+            <div class="user-card__user">
+              <div class="user-card__pfp-wrapper">
+                <img
+                  class="user-card__pfp"
+                  id="user-pfp"
+                  src="./images/pfp_2.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="user-card__profile">
+                <div class="user-card__mini-pfp-wrapper">
+                  <img
+                    class="user-card__mini-pfp"
+                    src="./images/pfp_2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="user-card__username">
+                  <p>Rafaela</p>
+                  <p class="user-card__age userbio__age">
+                    <i class="ri-women-line"></i> 24
+                  </p>
+                </div>
+                <div class="user-card__location">
+                  <i class="ri-map-pin-line"></i> Lima, Peru
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="user-card">
+            <div class="user-card__user">
+              <div class="user-card__pfp-wrapper">
+                <img
+                  class="user-card__pfp"
+                  id="user-pfp"
+                  src="./images/pfp_1.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="user-card__profile">
+                <div class="user-card__mini-pfp-wrapper">
+                  <img
+                    class="user-card__mini-pfp"
+                    src="./images/pfp_1.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="user-card__username">
+                  <p>Karen</p>
+                  <p class="user-card__age userbio__age">
+                    <i class="ri-women-line"></i> 22
+                  </p>
+                </div>
+                <div class="user-card__location">
+                  <i class="ri-map-pin-line"></i> Lima, Peru
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="user-card">
+            <div class="user-card__user">
+              <div class="user-card__pfp-wrapper">
+                <img
+                  class="user-card__pfp"
+                  id="user-pfp"
+                  src="./images/pfp_3.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="user-card__profile">
+                <div class="user-card__mini-pfp-wrapper">
+                  <img
+                    class="user-card__mini-pfp"
+                    src="./images/pfp_3.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="user-card__username">
+                  <p>Sophia</p>
+                  <p class="user-card__age userbio__age">
+                    <i class="ri-women-line"></i> 20
+                  </p>
+                </div>
+                <div class="user-card__location">
+                  <i class="ri-map-pin-line"></i> Lima, Peru
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="user-card">
+            <div class="user-card__user">
+              <div class="user-card__pfp-wrapper">
+                <img
+                  class="user-card__pfp"
+                  id="user-pfp"
+                  src="./images/pfp_4.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="user-card__profile">
+                <div class="user-card__mini-pfp-wrapper">
+                  <img
+                    class="user-card__mini-pfp"
+                    src="./images/pfp_4.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="user-card__username">
+                  <p>Rafaela</p>
+                  <p class="user-card__age userbio__age">
+                    <i class="ri-women-line"></i> 24
+                  </p>
+                </div>
+                <div class="user-card__location">
+                  <i class="ri-map-pin-line"></i> Lima, Peru
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="user-card">
+            <div class="user-card__user">
+              <div class="user-card__pfp-wrapper">
+                <img
+                  class="user-card__pfp"
+                  id="user-pfp"
+                  src="./images/pfp_4.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="user-card__profile">
+                <div class="user-card__mini-pfp-wrapper">
+                  <img
+                    class="user-card__mini-pfp"
+                    src="./images/pfp_4.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="user-card__username">
+                  <p>Mia</p>
+                  <p class="user-card__age userbio__age">
+                    <i class="ri-women-line"></i> 24
+                  </p>
+                </div>
+                <div class="user-card__location">
+                  <i class="ri-map-pin-line"></i> Lima, Peru
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="app__section mt-3">
+          <h2>Discover</h2>
+          <a href="#" class="app__show-more">Show more</a>
+        </div>
+        <hr class="user-hymn__divider" />
+        <div class="app__cards-wrapper" id="cards-wrapper">
+          <article class="user-card">
+            <div class="user-card__user">
+              <div class="user-card__pfp-wrapper">
+                <img
+                  class="user-card__pfp"
+                  id="user-pfp"
+                  src="./images/pfp_2.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="user-card__profile">
+                <div class="user-card__mini-pfp-wrapper">
+                  <img
+                    class="user-card__mini-pfp"
+                    src="./images/pfp_2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="user-card__username">
+                  <p>Rafaela</p>
+                  <p class="user-card__age userbio__age">
+                    <i class="ri-women-line"></i> 24
+                  </p>
+                </div>
+                <div class="user-card__location">
+                  <i class="ri-map-pin-line"></i> Lima, Peru
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="user-card">
+            <div class="user-card__user">
+              <div class="user-card__pfp-wrapper">
+                <img
+                  class="user-card__pfp"
+                  id="user-pfp"
+                  src="./images/pfp_2.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="user-card__profile">
+                <div class="user-card__mini-pfp-wrapper">
+                  <img
+                    class="user-card__mini-pfp"
+                    src="./images/pfp_2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="user-card__username">
+                  <p>Rafaela</p>
+                  <p class="user-card__age userbio__age">
+                    <i class="ri-women-line"></i> 24
+                  </p>
+                </div>
+                <div class="user-card__location">
+                  <i class="ri-map-pin-line"></i> Lima, Peru
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="user-card">
+            <div class="user-card__user">
+              <div class="user-card__pfp-wrapper">
+                <img
+                  class="user-card__pfp"
+                  id="user-pfp"
+                  src="./images/pfp_2.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="user-card__profile">
+                <div class="user-card__mini-pfp-wrapper">
+                  <img
+                    class="user-card__mini-pfp"
+                    src="./images/pfp_2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="user-card__username">
+                  <p>Rafaela</p>
+                  <p class="user-card__age userbio__age">
+                    <i class="ri-women-line"></i> 24
+                  </p>
+                </div>
+                <div class="user-card__location">
+                  <i class="ri-map-pin-line"></i> Lima, Peru
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="user-card">
+            <div class="user-card__user">
+              <div class="user-card__pfp-wrapper">
+                <img
+                  class="user-card__pfp"
+                  id="user-pfp"
+                  src="./images/pfp_2.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="user-card__profile">
+                <div class="user-card__mini-pfp-wrapper">
+                  <img
+                    class="user-card__mini-pfp"
+                    src="./images/pfp_2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="user-card__username">
+                  <p>Rafaela</p>
+                  <p class="user-card__age userbio__age">
+                    <i class="ri-women-line"></i> 24
+                  </p>
+                </div>
+                <div class="user-card__location">
+                  <i class="ri-map-pin-line"></i> Lima, Peru
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="user-card">
+            <div class="user-card__user">
+              <div class="user-card__pfp-wrapper">
+                <img
+                  class="user-card__pfp"
+                  id="user-pfp"
+                  src="./images/pfp_2.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="user-card__profile">
+                <div class="user-card__mini-pfp-wrapper">
+                  <img
+                    class="user-card__mini-pfp"
+                    src="./images/pfp_2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="user-card__username">
+                  <p>Rafaela</p>
+                  <p class="user-card__age userbio__age">
+                    <i class="ri-women-line"></i> 24
+                  </p>
+                </div>
+                <div class="user-card__location">
+                  <i class="ri-map-pin-line"></i> Lima, Peru
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
