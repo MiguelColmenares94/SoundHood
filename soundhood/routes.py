@@ -25,7 +25,7 @@ auth_url = f'https://accounts.spotify.com/authorize?client_id={client_id}&respon
 def login():
     if 'user_id' in session:
         return redirect(url_for('home'))
-    return render_template('login.html', login=auth_url)
+    return render_template('index.html')
 
 @app.route('/callback', methods=['GET', 'POST'])
 def callback():
