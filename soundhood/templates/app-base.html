@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- meta tags -->
+    {% include 'meta.html' %}
+
+    <!-- links -->
+    {% include 'links.html' %}
+
+    <!-- scripts -->
+    {% inclue 'scripts.html' %}
+
+    <!-- Page Title -->
+    <title>SoundHood - {% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <div class="app">
+      <!-- Header -->
+      {% include 'app-header.html' %}
+
+      <!-- Sidebar -->
+      {% include 'app-sidebar.html' %}
+      <main class="app__main" id="dynamic-gradient">
+        {% block main %} {% endblock %}
+      </main>
+    </div>
+  </body>
+</html>
