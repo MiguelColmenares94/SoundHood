@@ -546,8 +546,8 @@ label {
 }
 
 .user-pfp__img {
-  height: 15rem;
-  width: 15rem;
+  height: 16.125rem;
+  width: 16.125rem;
   object-fit: cover;
 }
 
@@ -707,3 +707,5 @@ label {
   cursor: pointer;
   user-select: none;
 }
+
+/*# sourceMappingURL=style.css.map */
