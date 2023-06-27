@@ -15,9 +15,9 @@ class MySQLConnection:
         try:
             pool = mysql.connector.pooling.MySQLConnectionPool(**self.__config)
             self.connection = pool.get_connection()
-            print('Successfully connecto to MySQL database')
+            print('Successfully connected to MySQL database')
         except mysql.connector.Error as e:
-            print('Error connection to database: ', str(e))
+            print('Error while connecting to the database: ', str(e))
             raise e
 
     def get_connection(self):
