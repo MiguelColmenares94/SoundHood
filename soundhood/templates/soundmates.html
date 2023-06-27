@@ -5,174 +5,171 @@
 
 <!-- Home -->
 {% block main %}
-<div class="app__card-swipper-wrapper">
-    <div class="card-swipper" id="swipper">
-        <article
-            class="user-card mi-auto card-swipper__card"
-            style="--i: 0"
-        >
-            <div class="user-card__user">
-              <div class="user-card__pfp-wrapper">
-                  <img
-                  class="user-card__pfp"
-                  id="user-pfp"
-                  src="../static/images/pfp_4.jpg"
-                  alt=""
-                  />
-              </div>
-              <div class="user-card__profile">
-                  <div class="user-card__mini-pfp-wrapper">
-                  <img
-                      class="user-card__mini-pfp"
-                      src="../static/images/pfp_4.jpg"
-                      alt=""
-                  />
-                  </div>
-                  <div class="user-card__username">
-                  <p>Rafaela</p>
-                  <p class="user-card__age userbio__age">
-                      <i class="ri-women-line"></i> 24
-                  </p>
-                  </div>
-                  <div class="user-card__location">
-                  <i class="ri-map-pin-line"></i> Lima, Peru
-                  </div>
-              </div>
-            </div>
-        </article>
-        <article
-            class="user-card mi-auto card-swipper__card"
-            style="--i: 1"
-        >
-            <div class="user-card__user">
-            <div class="user-card__pfp-wrapper">
-                <img
-                class="user-card__pfp"
-                id="user-pfp"
-                src="../static/images/pfp_3.jpg"
-                alt=""
-                />
-            </div>
-            <div class="user-card__profile">
-                <div class="user-card__mini-pfp-wrapper">
-                <img
-                    class="user-card__mini-pfp"
-                    src="../static/images/pfp_3.jpg"
-                    alt=""
-                />
-                </div>
-                <div class="user-card__username">
-                <p>Rafaela</p>
-                <p class="user-card__age userbio__age">
-                    <i class="ri-women-line"></i> 24
-                </p>
-                </div>
-                <div class="user-card__location">
-                <i class="ri-map-pin-line"></i> Lima, Peru
-                </div>
-            </div>
-            </div>
-        </article>
-        <article
-            class="user-card mi-auto card-swipper__card"
-            style="--i: 2"
-        >
-            <div class="user-card__user">
-            <div class="user-card__pfp-wrapper">
-                <img
-                class="user-card__pfp"
-                id="user-pfp"
-                src="../static/images/pfp_2.jpg"
-                alt=""
-                />
-            </div>
-            <div class="user-card__profile">
-                <div class="user-card__mini-pfp-wrapper">
-                <img
-                    class="user-card__mini-pfp"
-                    src="../static/images/pfp_2.jpg"
-                    alt=""
-                />
-                </div>
-                <div class="user-card__username">
-                <p>Rafaela</p>
-                <p class="user-card__age userbio__age">
-                    <i class="ri-women-line"></i> 24
-                </p>
-                </div>
-                <div class="user-card__location">
-                <i class="ri-map-pin-line"></i> Lima, Peru
-                </div>
-            </div>
-            </div>
-        </article>
-        <article
-            class="user-card mi-auto card-swipper__card"
-            style="--i: 3"
-        >
-            <div class="user-card__user">
-            <div class="user-card__pfp-wrapper">
-                <img
-                class="user-card__pfp"
-                id="user-pfp"
-                src="../static/images/pfp_1.jpg"
-                alt=""
-                />
-            </div>
-            <div class="user-card__profile">
-                <div class="user-card__mini-pfp-wrapper">
-                <img
-                    class="user-card__mini-pfp"
-                    src="../static/images/pfp_1.jpg"
-                    alt=""
-                />
-                </div>
-                <div class="user-card__username">
-                <p>Rafaela</p>
-                <p class="user-card__age userbio__age">
-                    <i class="ri-women-line"></i> 24
-                </p>
-                </div>
-                <div class="user-card__location">
-                <i class="ri-map-pin-line"></i> Lima, Peru
-                </div>
-            </div>
-            </div>
-        </article>
-        <article
-            class="user-card mi-auto card-swipper__card"
-            style="--i: 4"
-        >
-            <div class="user-card__user">
-            <div class="user-card__pfp-wrapper">
-                <img
-                class="user-card__pfp"
-                id="user-pfp"
-                src="../static/images/pfp_4.jpg"
-                alt=""
-                />
-            </div>
-            <div class="user-card__profile">
-                <div class="user-card__mini-pfp-wrapper">
-                <img
-                    class="user-card__mini-pfp"
-                    src="../static/images/pfp_4.jpg"
-                    alt=""
-                />
-                </div>
-                <div class="user-card__username">
-                <p>Rafaela</p>
-                <p class="user-card__age userbio__age">
-                    <i class="ri-women-line"></i> 24
-                </p>
-                </div>
-                <div class="user-card__location">
-                <i class="ri-map-pin-line"></i> Lima, Peru
-                </div>
-            </div>
-            </div>
-        </article>
-        </div>
+<div class="app__user-card-scroller">
+  <article
+    class="user-card"
+    style="--i: 0"
+    >
+    <div class="user-card__user">
+      <div class="user-card__pfp-wrapper">
+        <img
+        class="user-card__pfp"
+        id="user-pfp"
+        src="../static/images/pfp_4.jpg"
+        alt=""
+        />
+      </div>
+    <div class="user-card__profile">
+      <div class="user-card__mini-pfp-wrapper">
+        <img
+        class="user-card__mini-pfp"
+        src="../static/images/pfp_4.jpg"
+        alt=""
+        />
+      </div>
+      <div class="user-card__username">
+        <p>Rafaela</p>
+        <p class="user-card__age userbio__age">
+        <i class="ri-women-line"></i> 24
+        </p>
+      </div>
+      <div class="user-card__location">
+        <i class="ri-map-pin-line"></i> Lima, Peru
+      </div>
     </div>
-    </main>
+    </div>
+  </article>
+  <article
+    class="user-card"
+    style="--i: 1"
+    >
+    <div class="user-card__user">
+      <div class="user-card__pfp-wrapper">
+        <img
+        class="user-card__pfp"
+        id="user-pfp"
+        src="../static/images/pfp_3.jpg"
+        alt=""
+        />
+      </div>
+    <div class="user-card__profile">
+      <div class="user-card__mini-pfp-wrapper">
+        <img
+        class="user-card__mini-pfp"
+        src="../static/images/pfp_3.jpg"
+        alt=""
+        />
+      </div>
+      <div class="user-card__username">
+        <p>Rafaela</p>
+        <p class="user-card__age userbio__age">
+        <i class="ri-women-line"></i> 24
+        </p>
+      </div>
+      <div class="user-card__location">
+        <i class="ri-map-pin-line"></i> Lima, Peru
+      </div>
+    </div>
+    </div>
+  </article>
+  <article
+    class="user-card"
+    style="--i: 2"
+    >
+    <div class="user-card__user">
+      <div class="user-card__pfp-wrapper">
+        <img
+        class="user-card__pfp"
+        id="user-pfp"
+        src="../static/images/pfp_2.jpg"
+        alt=""
+        />
+      </div>
+    <div class="user-card__profile">
+      <div class="user-card__mini-pfp-wrapper">
+        <img
+        class="user-card__mini-pfp"
+        src="../static/images/pfp_2.jpg"
+        alt=""
+        />
+      </div>
+      <div class="user-card__username">
+        <p>Rafaela</p>
+        <p class="user-card__age userbio__age">
+        <i class="ri-women-line"></i> 24
+        </p>
+      </div>
+      <div class="user-card__location">
+        <i class="ri-map-pin-line"></i> Lima, Peru
+      </div>
+    </div>
+    </div>
+  </article>
+  <article
+    class="user-card"
+    style="--i: 3"
+    >
+    <div class="user-card__user">
+      <div class="user-card__pfp-wrapper">
+        <img
+        class="user-card__pfp"
+        id="user-pfp"
+        src="../static/images/pfp_1.jpg"
+        alt=""
+        />
+      </div>
+    <div class="user-card__profile">
+      <div class="user-card__mini-pfp-wrapper">
+        <img
+        class="user-card__mini-pfp"
+        src="../static/images/pfp_1.jpg"
+        alt=""
+        />
+      </div>
+      <div class="user-card__username">
+        <p>Rafaela</p>
+        <p class="user-card__age userbio__age">
+        <i class="ri-women-line"></i> 24
+        </p>
+      </div>
+      <div class="user-card__location">
+        <i class="ri-map-pin-line"></i> Lima, Peru
+      </div>
+    </div>
+    </div>
+  </article>
+  <article
+    class="user-card"
+    style="--i: 4"
+    >
+    <div class="user-card__user">
+      <div class="user-card__pfp-wrapper">
+        <img
+        class="user-card__pfp"
+        id="user-pfp"
+        src="../static/images/pfp_4.jpg"
+        alt=""
+        />
+      </div>
+    <div class="user-card__profile">
+      <div class="user-card__mini-pfp-wrapper">
+        <img
+        class="user-card__mini-pfp"
+        src="../static/images/pfp_4.jpg"
+        alt=""
+        />
+      </div>
+      <div class="user-card__username">
+        <p>Rafaela</p>
+        <p class="user-card__age userbio__age">
+        <i class="ri-women-line"></i> 24
+        </p>
+      </div>
+      <div class="user-card__location">
+        <i class="ri-map-pin-line"></i> Lima, Peru
+      </div>
+    </div>
+    </div>
+  </article>
+</div>
 {% endblock main %}
