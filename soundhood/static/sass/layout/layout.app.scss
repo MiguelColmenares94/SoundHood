@@ -50,7 +50,7 @@
     border-radius: 0.5rem;
     grid-area: main;
     padding: 1.5rem;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     & > * {
       margin-bottom: 1em;
@@ -99,11 +99,21 @@
     //grid-template-rows: 1fr 0 0 0 0;
   }
 
-  &__card-swipper-wrapper {
-    height: 89vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+  &__user-card-scroller {
+    max-width: 450px;
+    margin-inline: auto;
+    display: grid;
+    gap: 1rem;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+
+    scroll-snap-type: inline mandatory;
+
+    & > * {
+      scroll-snap-align: start;
+    }
   }
 }
