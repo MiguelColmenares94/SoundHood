@@ -19,21 +19,12 @@
         <img
           class="user-card__pfp"
           id="user-pfp"
-<<<<<<< HEAD
-          src="../static/images/pfp_2.jpg"
-          alt="" />
-      </div>
-      <div class="user-card__profile">
-        <div class="user-card__mini-pfp-wrapper">
-          <img class="user-card__mini-pfp" src="../static/images/pfp_2.jpg" alt="" />
-=======
 	  src="{{ user_id.get('profile_photo') }}"
 	  alt="{{ user_id.get('name') }}" />
       </div>
       <div class="user-card__profile">
         <div class="user-card__mini-pfp-wrapper">
 		<img class="user-card__mini-pfp" src="{{ user_id.get('profile_photo') }}" alt="" />
->>>>>>> 7e9c75a (feat: send some information in back to the front and separate table creation from database)
         </div>
         <div class="user-card__username">
 		<p>{{ user_id.get('name') }}</p>
@@ -42,111 +33,7 @@
           </p>
         </div>
         <div class="user-card__location">
-<<<<<<< HEAD
-          <i class="ri-map-pin-line"></i> Lima, Peru
-        </div>
-      </div>
-    </div>
-  </article>
-  <article class="user-card">
-    <div class="user-card__user">
-      <div class="user-card__pfp-wrapper">
-        <img
-          class="user-card__pfp"
-          id="user-pfp"
-          src="../static/images/pfp_1.jpg"
-          alt="" />
-      </div>
-      <div class="user-card__profile">
-        <div class="user-card__mini-pfp-wrapper">
-          <img class="user-card__mini-pfp" src="../static/images/pfp_1.jpg" alt="" />
-        </div>
-        <div class="user-card__username">
-          <p>Karen</p>
-          <p class="user-card__age userbio__age">
-            <i class="ri-women-line"></i> 22
-          </p>
-        </div>
-        <div class="user-card__location">
-          <i class="ri-map-pin-line"></i> Lima, Peru
-        </div>
-      </div>
-    </div>
-  </article>
-  <article class="user-card">
-    <div class="user-card__user">
-      <div class="user-card__pfp-wrapper">
-        <img
-          class="user-card__pfp"
-          id="user-pfp"
-          src="../static/images/pfp_3.jpg"
-          alt="" />
-      </div>
-      <div class="user-card__profile">
-        <div class="user-card__mini-pfp-wrapper">
-          <img class="user-card__mini-pfp" src="../static/images/pfp_3.jpg" alt="" />
-        </div>
-        <div class="user-card__username">
-          <p>Sophia</p>
-          <p class="user-card__age userbio__age">
-            <i class="ri-women-line"></i> 20
-          </p>
-        </div>
-        <div class="user-card__location">
-          <i class="ri-map-pin-line"></i> Lima, Peru
-        </div>
-      </div>
-    </div>
-  </article>
-  <article class="user-card">
-    <div class="user-card__user">
-      <div class="user-card__pfp-wrapper">
-        <img
-          class="user-card__pfp"
-          id="user-pfp"
-          src="../static/images/pfp_4.jpg"
-          alt="" />
-      </div>
-      <div class="user-card__profile">
-        <div class="user-card__mini-pfp-wrapper">
-          <img class="user-card__mini-pfp" src="../static/images/pfp_4.jpg" alt="" />
-        </div>
-        <div class="user-card__username">
-          <p>Rafaela</p>
-          <p class="user-card__age userbio__age">
-            <i class="ri-women-line"></i> 24
-          </p>
-        </div>
-        <div class="user-card__location">
-          <i class="ri-map-pin-line"></i> Lima, Peru
-        </div>
-      </div>
-    </div>
-  </article>
-  <article class="user-card">
-    <div class="user-card__user">
-      <div class="user-card__pfp-wrapper">
-        <img
-          class="user-card__pfp"
-          id="user-pfp"
-          src="../static/images/pfp_4.jpg"
-          alt="" />
-      </div>
-      <div class="user-card__profile">
-        <div class="user-card__mini-pfp-wrapper">
-          <img class="user-card__mini-pfp" src="../static/images/pfp_4.jpg" alt="" />
-        </div>
-        <div class="user-card__username">
-          <p>Mia</p>
-          <p class="user-card__age userbio__age">
-            <i class="ri-women-line"></i> 24
-          </p>
-        </div>
-        <div class="user-card__location">
-          <i class="ri-map-pin-line"></i> Lima, Peru
-=======
 		<i class="ri-map-pin-line"></i> {{ user_id.get('country') }}
->>>>>>> 7e9c75a (feat: send some information in back to the front and separate table creation from database)
         </div>
       </div>
     </div>
