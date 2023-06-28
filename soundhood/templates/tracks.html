@@ -1,0 +1,43 @@
+{% extends "app-base.html" %}
+
+<!-- Title -->
+{% block title %}Home{% endblock %}
+
+<!-- Home -->
+{% block main %}
+<div class="app__section">
+  <h2>Soundmates</h2>
+  <a href="#" class="app__show-more">Show more</a>
+</div>
+<hr class="user-hymn__divider" />
+<div class="app__cards-wrapper" id="cards-wrapper">
+	{% for user_id in matches %}
+	  	{% set user_id = others.get(user_id) %}
+  <article class="user-card">
+    <div class="user-card__user">
+      <div class="user-card__pfp-wrapper">
+        <img
+          class="user-card__pfp"
+          id="user-pfp"
+	  src="{{ user_id.get('profile_photo') }}"
+	  alt="{{ user_id.get('name') }}" />
+      </div>
+      <div class="user-card__profile">
+        <div class="user-card__mini-pfp-wrapper">
+		<img class="user-card__mini-pfp" src="{{ user_id.get('profile_photo') }}" alt="" />
+        </div>
+        <div class="user-card__username">
+		<p>{{ user_id.get('name') }}</p>
+          <p class="user-card__age userbio__age">
+	  <i class="ri-{{ user_id.get('gender') }}-line"></i> 24
+          </p>
+        </div>
+        <div class="user-card__location">
+		<i class="ri-map-pin-line"></i> {{ user_id.get('country') }}
+        </div>
+      </div>
+    </div>
+  </article>
+    {% endfor %}
+</div>
+{% endblock main %}

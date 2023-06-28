@@ -4,7 +4,7 @@
 from flask import request, redirect, session, url_for, render_template
 from soundhood import app
 from soundhood.api_call import get_tokens, get_user_info, get_track_info, get_album_info, get_playlist_info, get_top_track_info
-from soundhood.database import create_connection, save_user_info, get_user_db, get_top_tracks_db, get_user_track_db, get_tracks_from_other_users, get_other_users_db
+from soundhood.database import create_connection, save_user_info, get_user_db, get_top_tracks_db, get_top_tracks_from_other_users, get_user_track_db, get_tracks_from_other_users, get_other_users_db
 from soundhood.recommendation_system import jaccard_similarity, jaccard_distance, not_common_items
 import base64
 import json
@@ -25,7 +25,7 @@ auth_url = f'https://accounts.spotify.com/authorize?client_id={client_id}&respon
 def login():
     if 'user_id' in session:
         return redirect(url_for('home'))
-    return render_template('index.html')
+    return render_template('index.html', authorization=auth_url)
 
 @app.route('/callback', methods=['GET', 'POST'])
 def callback():
@@ -61,14 +61,18 @@ def home():
     connection = create_connection()
     cursor = connection.cursor()
     #user for template
-    user = get_user_db(cursor)
-    if user['profile_photo'] is None:
-        user['profile_photo'] = 'https://www.coachhousevets.com/wp-content/uploads/2023/04/no-photo-icon-22.png'
-    #tracks for template
-    top_tracks = get_top_tracks_db(cursor)
+    user_data = get_user_db(cursor)
+    if user_data['profile_photo'] is None:
+        user_data['profile_photo'] = 'https://www.coachhousevets.com/wp-content/uploads/2023/04/no-photo-icon-22.png'
+    others_data = get_other_users_db(cursor)
+    user_tt = get_top_tracks_db(cursor)
+    others_tt = get_top_tracks_from_other_users(cursor)
+    jaccard_scores = jaccard_similarity(user_tt, others_tt)
+    jaccard_dist = jaccard_distance(jaccard_scores)
+    not_common = not_common_items(user_tt, others_tt)
     cursor.close()
     connection.close()
-    return render_template('home.html')
+    return render_template('home.html', user=user_data, others=others_data, matches=jaccard_scores, not_match=jaccard_dist, not_common=not_common)
 
 @app.route("/tracks")
 def tracks():
@@ -76,15 +80,29 @@ def tracks():
         return redirect(url_for('login'))
     connection = create_connection()
     cursor = connection.cursor()
-    tracks = get_user_track_db(cursor)
-    users_tracks = get_tracks_from_other_users(cursor)
-    users_data_dict = get_other_users_db(cursor)
-    jaccard_scores = jaccard_similarity(tracks, users_tracks)
+    #tracks user likes
+    user_t = get_user_track_db(cursor)
+    #tracks all other users likes
+    others_t = get_tracks_from_other_users(cursor)
+    #other users personal info
+    others_data = get_other_users_db(cursor)
+    #match percentage
+    jaccard_scores = jaccard_similarity(user_t, others_t)
+    #not match percentage
     jaccard_dist = jaccard_distance(jaccard_scores)
-    not_common_items(tracks, users_tracks)
+    #songs that other users like but not the logged user
+    not_common = not_common_items(user_t, others_t)
     cursor.close()
     connection.close()
-    return render_template('tracks.html')
+    return render_template('tracks.html', others=others_data, matches=jaccard_scores, not_match=jaccard_dist, not_common=not_common)
+
+@app.route("/soundmates/")
+def sound_mates():
+    return render_template('soundmates.html')
+
+@app.route("/user-profile/")
+def user_profile():
+    return render_template('user-profile.html')
 
 @app.route("/logout/")
 def logout():

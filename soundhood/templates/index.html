@@ -13,7 +13,7 @@
     <div class="container">
       <header class="landing-header">
         <h1 class="logo" aria-label="logotype">Soundhood</h1>
-        <a class="button button__default" href="#">Login</a>
+	<a class="button button__default" href="{{ authorization  }}">Login</a>
       </header>
     </div>
 
@@ -28,7 +28,7 @@
     <div class="container">
       <main class="landing-main">
         <a
-          href="form.html"
+	  href="{{ authorization }}"
           class="landing-main__cta button button__outline button__rounded">
           <i class="ri-spotify-fill ri-xl"></i> Start now with Spotify
         </a>
@@ -77,7 +77,7 @@
           <ul class="landing-footer__links">
             <li><a href="#">Home</a></li>
             <li><a href="#">About</a></li>
-            <li><a href="#">Log in</a></li>
+	    <li><a href="{{ authorization }}">Log in</a></li>
           </ul>
         </nav>
       </footer>

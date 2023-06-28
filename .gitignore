@@ -4,3 +4,4 @@ show.sql
 **/__pycache__/
 .cache
 .venv
+fillData/

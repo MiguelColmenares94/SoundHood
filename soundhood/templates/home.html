@@ -11,26 +11,38 @@
 </div>
 <hr class="user-hymn__divider" />
 <div class="app__cards-wrapper" id="cards-wrapper">
+	{% for user_id in matches %}
+	  	{% set user_id = others.get(user_id) %}
   <article class="user-card">
     <div class="user-card__user">
       <div class="user-card__pfp-wrapper">
         <img
           class="user-card__pfp"
           id="user-pfp"
+<<<<<<< HEAD
           src="../static/images/pfp_2.jpg"
           alt="" />
       </div>
       <div class="user-card__profile">
         <div class="user-card__mini-pfp-wrapper">
           <img class="user-card__mini-pfp" src="../static/images/pfp_2.jpg" alt="" />
+=======
+	  src="{{ user_id.get('profile_photo') }}"
+	  alt="{{ user_id.get('name') }}" />
+      </div>
+      <div class="user-card__profile">
+        <div class="user-card__mini-pfp-wrapper">
+		<img class="user-card__mini-pfp" src="{{ user_id.get('profile_photo') }}" alt="" />
+>>>>>>> 7e9c75a (feat: send some information in back to the front and separate table creation from database)
         </div>
         <div class="user-card__username">
-          <p>Rafaela</p>
+		<p>{{ user_id.get('name') }}</p>
           <p class="user-card__age userbio__age">
-            <i class="ri-women-line"></i> 24
+	  <i class="ri-{{ user_id.get('gender') }}-line"></i> 24
           </p>
         </div>
         <div class="user-card__location">
+<<<<<<< HEAD
           <i class="ri-map-pin-line"></i> Lima, Peru
         </div>
       </div>
@@ -132,9 +144,13 @@
         </div>
         <div class="user-card__location">
           <i class="ri-map-pin-line"></i> Lima, Peru
+=======
+		<i class="ri-map-pin-line"></i> {{ user_id.get('country') }}
+>>>>>>> 7e9c75a (feat: send some information in back to the front and separate table creation from database)
         </div>
       </div>
     </div>
   </article>
+    {% endfor %}
 </div>
 {% endblock main %}

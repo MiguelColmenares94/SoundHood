@@ -23,132 +23,6 @@ def create_connection():
         return None
 
 
-def create_tables():
-    connection = create_connection()
-    if connection is None:
-        print('can\'t connect with DB')
-        return
-    
-    cursor = connection.cursor()
-    
-    # Check if the tables exists
-    cursor.execute("SHOW TABLES LIKE 'User'")
-    result = cursor.fetchone()
-    if result:
-        print("Tables already exists :)")
-        return
-
-    # SQL statements to create tables
-    create_users_table = '''
-    CREATE TABLE IF NOT EXISTS User (
-     user_id INT AUTO_INCREMENT PRIMARY KEY,
-     spotify_user_id VARCHAR(255),
-     email VARCHAR(255) NOT NULL,
-     user_name VARCHAR(255),
-     profile_photo VARCHAR(255),
-     birthday DATE,
-     gender VARCHAR(255),
-     created_at DATETIME,
-     modified_at DATETIME,
-     country VARCHAR(255),
-     refresh_token VARCHAR(255)
-);
-    '''
-    
-    create_album_table = '''
-    CREATE TABLE IF NOT EXISTS Album (
-     album_id INT AUTO_INCREMENT PRIMARY KEY,
-     spotify_album_id VARCHAR(255),
-     album_name VARCHAR(255),
-     cover_image VARCHAR(255),
-     spotify_url VARCHAR(255)
-    );
-    '''
-
-    create_track_table = '''
-    CREATE TABLE IF NOT EXISTS Track (
-     track_id INT AUTO_INCREMENT PRIMARY KEY,
-     spotify_track_id VARCHAR(255),
-     spotify_album_id VARCHAR(255),
-     track_name VARCHAR(255),
-     spotify_url VARCHAR(255),
-     cover_image VARCHAR(255)
-    );
-    '''
-   
-    create_playlist_table = '''
-    CREATE TABLE IF NOT EXISTS Playlist (
-     playlist_id INT AUTO_INCREMENT PRIMARY KEY,
-     spotify_playlist_id VARCHAR(255),
-     owner_id INT,
-     spotify_url VARCHAR(255),
-     cover_image VARCHAR(255)
-    );
-    '''
-
-    create_user_album_table = '''
-    CREATE TABLE IF NOT EXISTS User_Album (
-        user_id INT,
-        album_id INT,
-        FOREIGN KEY (user_id) REFERENCES User(user_id),
-        FOREIGN KEY (album_id) REFERENCES Album(album_id),
-        PRIMARY KEY (user_id, album_id)
-        );
-        '''
-
-    create_user_track_table = '''
-    CREATE TABLE IF NOT EXISTS User_Track (
-        user_id INT,
-        track_id INT,
-        FOREIGN KEY (user_id) REFERENCES User(user_id),
-        FOREIGN KEY (track_id) REFERENCES Track(track_id),
-        PRIMARY KEY (user_id, track_id)
-        );
-        '''
-
-    create_user_playlist_table = '''
-    CREATE TABLE IF NOT EXISTS User_Playlist (
-        user_id INT,
-        playlist_id INT,
-        FOREIGN KEY (user_id) REFERENCES User(user_id),
-        FOREIGN KEY (playlist_id) REFERENCES Playlist(playlist_id),
-        PRIMARY KEY (user_id, playlist_id)
-        );
-        '''
-
-    create_user_top_track_table = '''
-    CREATE TABLE IF NOT EXISTS User_TopTrack (
-        user_id INT,
-        track_id INT,
-        FOREIGN KEY (user_id) REFERENCES User(user_id),
-        FOREIGN KEY (track_id) REFERENCES Track(track_id),
-        PRIMARY KEY (user_id, track_id)
-         );
-        '''
-
-    
-
-    # Execute table creation statements
-    try:
-        cursor.execute(create_users_table)
-        cursor.execute(create_album_table)
-        cursor.execute(create_track_table)
-        cursor.execute(create_playlist_table)
-        cursor.execute(create_user_album_table)
-        cursor.execute(create_user_track_table)
-        cursor.execute(create_user_playlist_table)
-        cursor.execute(create_user_top_track_table)
-        connection.commit()
-        print('Tables created successfully')
-    except mysql.connector.Error as err:
-        print('Error creating tables:', err)
-        connection.rollback()
-    
-    # Close the cursor and connection
-    cursor.close()
-    connection.close()
-    return
-
 def save_user_info(connection, refresh_token, user_info, track_info, album_info, playlist_info, top_track):
     
     """ Save all user info in DB """
@@ -327,21 +201,22 @@ def save_user_info(connection, refresh_token, user_info, track_info, album_info,
 
 def get_user_db(cursor):
 
-    query = "SELECT user_name, profile_photo, country FROM User WHERE spotify_user_id = %s"
+    query = "SELECT * FROM User WHERE spotify_user_id = %s"
 
     cursor.execute(query, (session['user_id'],))
 
     user = cursor.fetchone()
     
     if user:
-        keys = ('user_name', 'profile_photo', 'country')
+        keys = ('user_id', 'spotify_user_id', 'email', 'user_name', 'profile_photo', 'birthday', 'gender',
+                'created_at', 'country')
         user = dict(zip(keys, user))
         return user
     else:
         return('User not in DB')
 
 def get_other_users_db(cursor):
-    query = "SELECT user_id, user_name, profile_photo, country FROM User WHERE spotify_user_id <> %s"
+    query = "SELECT user_id, user_name, profile_photo, birthday, gender, country FROM User WHERE spotify_user_id <> %s"
     cursor.execute(query, (session['user_id'],))
 
     users_data = []
@@ -351,10 +226,12 @@ def get_other_users_db(cursor):
         row = cursor.fetchone()
 
     users_dict = {}
-    for user_id, user_name, profile_photo, country in users_data:
+    for user_id, user_name, profile_photo, birthday, gender, country in users_data:
         users_dict[user_id] = {
                 "name": user_name,
                 "profile_photo": profile_photo,
+                "birthday": birthday,
+                "gender": gender,
                 "country": country
         }
 
@@ -372,9 +249,36 @@ def get_top_tracks_db(cursor):
     top_tracks = cursor.fetchall()
 
     if top_tracks:
+        top_tracks = [item[0] for item in top_tracks]
+        print(top_tracks)
         return top_tracks
     else:
         return ('There are no Top Tracks')
+
+def get_top_tracks_from_other_users(cursor):
+
+    query = "SELECT user_id FROM User WHERE spotify_user_id = %s"
+    cursor.execute(query, (session['user_id'],))
+    user_id = cursor.fetchone()
+
+    query = "SELECT ut.user_id, t.track_id FROM User_TopTrack ut INNER JOIN Track t \
+             ON ut.track_id = t.track_id WHERE ut.user_id <> %s ORDER BY ut.user_id;"
+    cursor.execute(query, user_id)
+    other_users_top_track = cursor.fetchall()
+
+    if other_users_top_track:
+        users_top_tracks = {}
+
+        for user, track in other_users_top_track:
+            if user not in users_top_tracks:
+                users_top_tracks[user] = []
+            users_top_tracks[user].append(track)
+
+        users_tracks_list = [{user: tracks} for user, tracks in users_top_tracks.items()]
+        print(users_tracks_list)
+        return (users_tracks_list)
+    else:
+        return print("Error retrieve all other users track")
 
 def get_user_track_db(cursor):
 

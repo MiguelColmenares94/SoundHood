@@ -15,8 +15,10 @@ def jaccard_similarity(tracks, users_tracks):
             jaccard_similarity = intersection / union
             jaccard_similarities[user] = jaccard_similarity
 
-    print(jaccard_similarities)
-    return (jaccard_similarities)
+    sorted_jaccard_similarities = dict(sorted(jaccard_similarities.items(), key=lambda x: x[1], reverse=True))
+
+    print(sorted_jaccard_similarities)
+    return (sorted_jaccard_similarities)
 
 def jaccard_distance(jaccard_similarities):
     
