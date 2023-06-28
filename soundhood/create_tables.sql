@@ -72,10 +72,10 @@ CREATE TABLE IF NOT EXISTS User_Playlist (
         );
 
 -- User_TopTrack table
-CREATE TABLE IF NOT EXISTS User_Playlist (
+CREATE TABLE IF NOT EXISTS User_TopTrack (
         user_id INT,
-        playlist_id INT,
+        track_id INT,
         FOREIGN KEY (user_id) REFERENCES User(user_id),
-        FOREIGN KEY (playlist_id) REFERENCES Playlist(playlist_id),
-        PRIMARY KEY (user_id, playlist_id)
+        FOREIGN KEY (track_id) REFERENCES Track(track_id),
+        PRIMARY KEY (user_id, track_id)
         );

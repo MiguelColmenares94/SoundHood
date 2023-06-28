@@ -4,7 +4,7 @@
 from flask import request, redirect, session, url_for, render_template
 from soundhood import app
 from soundhood.api_call import get_tokens, get_user_info, get_track_info, get_album_info, get_playlist_info, get_top_track_info
-from soundhood.database import create_connection, save_user_info, get_user_db, get_top_tracks_db, get_top_tracks_from_other_users, get_user_track_db, get_tracks_from_other_users, get_other_users_db
+from soundhood.database import create_connection, save_user_info, get_user_db, get_top_tracks_db, get_top_tracks_from_other_users, get_user_track_db, get_tracks_from_other_users, get_other_users_db, filter_by_track
 from soundhood.recommendation_system import jaccard_similarity, jaccard_distance, not_common_items
 import base64
 import json
@@ -62,8 +62,7 @@ def home():
     cursor = connection.cursor()
     #user for template
     user_data = get_user_db(cursor)
-    if user_data['profile_photo'] is None:
-        user_data['profile_photo'] = 'https://www.coachhousevets.com/wp-content/uploads/2023/04/no-photo-icon-22.png'
+    session['user_id_db'] = user_data.get('user_id')
     others_data = get_other_users_db(cursor)
     user_tt = get_top_tracks_db(cursor)
     others_tt = get_top_tracks_from_other_users(cursor)
@@ -74,7 +73,7 @@ def home():
     connection.close()
     return render_template('home.html', user=user_data, others=others_data, matches=jaccard_scores, not_match=jaccard_dist, not_common=not_common)
 
-@app.route("/tracks")
+@app.route("/tracks/")
 def tracks():
     if not 'user_id' in session:
         return redirect(url_for('login'))
@@ -98,11 +97,66 @@ def tracks():
 
 @app.route("/soundmates/")
 def sound_mates():
+    if not 'user_id' in session:
+        return redirect(url_for('login'))
+
+    # query user data from DB
+    connection = create_connection()
+    cursor = connection.cursor()
+
+    others_data = get_other_users_db(cursor)
+    user_tt = get_top_tracks_db(cursor)
+    others_tt = get_top_tracks_from_other_users(cursor)
+    jaccard_scores = jaccard_similarity(user_tt, others_tt)
+    jaccard_dist = jaccard_distance(jaccard_scores)
+    not_common = not_common_items(user_tt, others_tt)
+    cursor.close()
+    connection.close()
+    return render_template('soundmates.html', others=others_data, matches=jaccard_scores)
+
+
     return render_template('soundmates.html')
 
-@app.route("/user-profile/")
+@app.route("/user_profile/")
 def user_profile():
-    return render_template('user-profile.html')
+    if not 'user_id' in session:
+        return redirect(url_for('login'))
+    
+    connection = create_connection()
+    cursor = connection.cursor()
+    button = 0
+    filt = 1
+    user = get_user_db(cursor)
+    user_tt =  get_top_tracks_db(cursor, user.get('user_id'))
+
+    return render_template('user-profile.html', user=user, button=button, tracks=user_tt, filt=filt)
+
+@app.route("/user_profile/<u_id>")
+def user_profile_id(u_id):
+    if not 'user_id' in session:
+        return redirect(url_for('login'))
+
+    connection = create_connection()
+    cursor = connection.cursor()
+    
+    user_data = get_user_db(cursor, u_id)
+    user_tt = get_top_tracks_db(cursor, u_id)
+    button = 1
+    filt = 0
+    if type(user_data) != dict:
+        return redirect(url_for('home'))
+    
+    return render_template('user-profile.html', user=user_data, button=button, tracks=user_tt, filt=filt)
+
+@app.route("/users_track/<track_name>/")
+def filter_track(track_name):
+    if not 'user_id' in session:
+        return redirect(url_for('login'))
+    connection = create_connection()
+    cursor = connection.cursor()
+    users_list = filter_by_track(cursor, track_name)
+    return render_template('filter_by_track.html', users_list=users_list)
+
 
 @app.route("/logout/")
 def logout():

@@ -6,13 +6,14 @@
 <!-- Home -->
 {% block main %}
 <div class="app__section">
-  <h2>Soundmates</h2>
-  <a href="#" class="app__show-more">Show more</a>
+  <h2>Soundmates (Based on liked tracks)</h2>
+  <a href="http://127.0.0.1:5000/tracks/" class="app__show-more">Show more</a>
 </div>
 <hr class="user-hymn__divider" />
 <div class="app__cards-wrapper" id="cards-wrapper">
 	{% for user_id in matches %}
 	  	{% set user_id = others.get(user_id) %}
+ <a href="http://127.0.0.1:5000/user_profile/{{ user_id.get('id') }}">
   <article class="user-card">
     <div class="user-card__user">
       <div class="user-card__pfp-wrapper">
@@ -28,7 +29,7 @@
         </div>
         <div class="user-card__username">
 		<p>{{ user_id.get('name') }}</p>
-          <p class="user-card__age userbio__age">
+          <p class="user-card__age userbio__age" style="background: {% if user_id.get('gender') == 'men' %}#2986cc{% endif %};">
 	  <i class="ri-{{ user_id.get('gender') }}-line"></i> 24
           </p>
         </div>
@@ -38,6 +39,7 @@
       </div>
     </div>
   </article>
+ </a>
     {% endfor %}
 </div>
 {% endblock main %}

@@ -199,21 +199,36 @@ def save_user_info(connection, refresh_token, user_info, track_info, album_info,
     connection.close()
     return
 
-def get_user_db(cursor):
+def get_user_db(cursor, u_id=None):
+    if not u_id:
 
-    query = "SELECT * FROM User WHERE spotify_user_id = %s"
+        query = "SELECT user_id, spotify_user_id, email, user_name, profile_photo, birthday, gender, created_at, country FROM User WHERE spotify_user_id = %s"
 
-    cursor.execute(query, (session['user_id'],))
+        cursor.execute(query, (session['user_id'],))
 
-    user = cursor.fetchone()
+        user = cursor.fetchone()
     
-    if user:
-        keys = ('user_id', 'spotify_user_id', 'email', 'user_name', 'profile_photo', 'birthday', 'gender',
+        if user:
+            keys = ('user_id', 'spotify_user_id', 'email', 'user_name', 'profile_photo', 'birthday', 'gender',
                 'created_at', 'country')
-        user = dict(zip(keys, user))
-        return user
-    else:
-        return('User not in DB')
+            user = dict(zip(keys, user))
+            return user
+        else:
+            return('User not in DB')
+
+    if u_id:
+        query = "SELECT user_name, profile_photo, birthday, gender, country FROM User WHERE user_id = %s"
+
+        cursor.execute(query, (u_id,))
+
+        user = cursor.fetchone()
+
+        if user:
+            keys = ('user_name', 'profile_photo', 'birthday', 'gender', 'country')
+            user = dict(zip(keys, user))
+            return user
+        else:
+            return('User not in DB')
 
 def get_other_users_db(cursor):
     query = "SELECT user_id, user_name, profile_photo, birthday, gender, country FROM User WHERE spotify_user_id <> %s"
@@ -228,6 +243,7 @@ def get_other_users_db(cursor):
     users_dict = {}
     for user_id, user_name, profile_photo, birthday, gender, country in users_data:
         users_dict[user_id] = {
+                "id": user_id,
                 "name": user_name,
                 "profile_photo": profile_photo,
                 "birthday": birthday,
@@ -238,22 +254,42 @@ def get_other_users_db(cursor):
     print (users_dict)
     return (users_dict)
 
-def get_top_tracks_db(cursor):
+def get_top_tracks_db(cursor, u_id=None):
     
-    query = "SELECT user_id FROM User WHERE spotify_user_id = %s"
-    cursor.execute(query, (session['user_id'],))
-    user_id = cursor.fetchone()
+    if not u_id:
+        query = "SELECT user_id FROM User WHERE spotify_user_id = %s"
+        cursor.execute(query, (session['user_id'],))
+        user_id = cursor.fetchone()
 
-    query = "SELECT track_id FROM User_TopTrack WHERE user_id = %s"
-    cursor.execute(query, user_id)
-    top_tracks = cursor.fetchall()
+        query = "SELECT track_id FROM User_TopTrack WHERE user_id = %s"
+        cursor.execute(query, user_id)
+        top_tracks = cursor.fetchall()
 
-    if top_tracks:
-        top_tracks = [item[0] for item in top_tracks]
-        print(top_tracks)
-        return top_tracks
-    else:
-        return ('There are no Top Tracks')
+        if top_tracks:
+            top_tracks = [item[0] for item in top_tracks]
+            print(top_tracks)
+            return top_tracks
+        else:
+            return ('There are no Top Tracks')
+
+    if u_id:
+        query = "SELECT t.track_name, t.album_name FROM Track AS t \
+                 INNER JOIN User_TopTrack AS ut ON ut.track_id = t.track_id WHERE ut.user_id = %s"
+        cursor.execute(query, (u_id,))
+        rows = cursor.fetchall()
+        
+        if rows:
+            tracks_album_list = []
+            for row in rows:
+                track_name, album_name = row
+                if not track_name or not album_name:
+                    continue
+                tracks_album_list.append([track_name, album_name])
+
+            print(tracks_album_list)
+            return tracks_album_list
+        else:
+            return ('There are no Top Tracks')
 
 def get_top_tracks_from_other_users(cursor):
 
@@ -321,3 +357,23 @@ def get_tracks_from_other_users(cursor):
         return (users_tracks_list)
     else:
         return print("Error retrieve all other users track")
+
+def filter_by_track(cursor, track_name):
+    query = "SELECT track_id FROM Track WHERE track_name = %s;"
+    cursor.execute(query, (track_name,))
+    t_id = cursor.fetchone()
+
+    query = "SELECT user_id FROM User_TopTrack WHERE track_id = %s;"
+    cursor.execute(query, t_id)
+    users = cursor.fetchall()
+
+    users_list = []
+    for user in users:
+        query = "SELECT user_id, user_name, profile_photo, birthday, gender, country FROM User WHERE user_id = %s;"
+        cursor.execute(query, user)
+        user_data = cursor.fetchone()
+        users_list.append(user_data)
+    
+    print(users_list)
+    return users_list
+

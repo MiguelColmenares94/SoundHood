@@ -7,34 +7,33 @@
 {% block main %}
 <div class="app__section">
   <h2>Soundmates</h2>
-  <a href="http://127.0.0.1:5000/soundmates/" class="app__show-more">Show more</a>
+  <a href="#" class="app__show-more">Show more</a>
 </div>
 <hr class="user-hymn__divider" />
 <div class="app__cards-wrapper" id="cards-wrapper">
-	{% for user_id in matches %}
-	  	{% set user_id = others.get(user_id) %}
- <a href="http://127.0.0.1:5000/user_profile/{{ user_id.get('id') }}">
+	{% for user in users_list %}
+	<a href="http://127.0.0.1:5000/user_profile/{{ user[0]  }}">
   <article class="user-card">
     <div class="user-card__user">
       <div class="user-card__pfp-wrapper">
         <img
           class="user-card__pfp"
           id="user-pfp"
-	  src="{{ user_id.get('profile_photo') }}"
-	  alt="{{ user_id.get('name') }}" />
+	  src="{{ user[2] }}"
+	  alt="{{ user[1] }}" />
       </div>
       <div class="user-card__profile">
         <div class="user-card__mini-pfp-wrapper">
-		<img class="user-card__mini-pfp" src="{{ user_id.get('profile_photo') }}" alt="" />
+		<img class="user-card__mini-pfp" src="{{ user[2] }}" alt="" />
         </div>
         <div class="user-card__username">
-		<p>{{ user_id.get('name') }}</p>
-		<p class="user-card__age userbio__age" style="background: {% if user_id.get('gender') == 'men' %}#2986cc{% endif %};">
-	  <i class="ri-{{ user_id.get('gender') }}-line"></i> 24
+		<p>{{ user[1] }}</p>
+		<p class="user-card__age userbio__age" style="background: {% if user[4] == 'men' %}#2986cc{% endif %};">
+	  <i class="ri-{{ user[4] }}-line"></i> 24
           </p>
         </div>
         <div class="user-card__location">
-		<i class="ri-map-pin-line"></i> {{ user_id.get('country') }}
+		<i class="ri-map-pin-line"></i> {{ user[5] }}
         </div>
       </div>
     </div>

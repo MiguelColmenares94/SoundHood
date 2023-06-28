@@ -7,15 +7,16 @@
 {% block main %}
 <section class="app__user userbio">
   <figure class="user-pfp">
-    <img class="user-pfp__img" id="user-pfp" src="../static/images/pfp_1.jpg" alt="" />
+	  <img class="user-pfp__img" id="user-pfp" src="{{ user.get('profile_photo') }}" alt="{{ user.get('user_name') }}" />
   </figure>
 
   <article class="userbio__info">
-    <h2 class="userbio__name">Sophia</h2>
-    <p class="userbio__country"><i class="ri-map-pin-line"></i> Peru</p>
-    <p class="userbio__age"><i class="ri-women-line"></i> 24</p>
+	  <h2 class="userbio__name">{{ user.get('user_name') }}</h2>
+    <p class="userbio__country"><i class="ri-map-pin-line"></i> {{ user.get('country') }}</p>
+    <p class="userbio__age" style="background: {% if user.get('gender') == 'men' %}#2986cc{% endif %};"><i class="ri-{{ user.get('gender') }}-line"></i> 24</p>
   </article>
 </section>
+{% if button %}
 <div class="like">
   <button class="button button__outline app__like-btn">
     <i class="ri-heart-3-line ri-xl"></i> Follow
@@ -24,10 +25,15 @@
     <i class="ri-send-plane-line ri-xl"></i> Message
   </button>
 </div>
+{% endif %}
 <div class="app__user-tracks">
   <section class="app__user-top-tracks top-tracks">
     <h2 class="top-tracks__heading">Top tracks</h2>
     <hr class="top-tracks__divider" />
+{% for row in tracks %}
+  {% if filt %}
+    <a href="http://127.0.0.1:5000/users_track/{{ row[0] }}">
+  {% endif %}
     <div class="track-card">
       <div class="track-card__album-cover">
         <img src="../static/images/brokenmachine_nbt.jpg" alt="" />
@@ -35,116 +41,27 @@
       <div class="track-card__info">
         <div class="track-card__info-container">
           <i class="ri-headphone-line"></i>
-          <h3 class="track-card__name">Broken Machine</h3>
+	  <h3 class="track-card__name">{{ row[0] }}</h3>
         </div>
+	<!-- This section will be implemented in the near future :)
         <div class="track-card__info-container">
           <i class="ri-user-line track-card__icon-artist"></i>
           <p class="track-card__artist">Nothing But Thieves</p>
         </div>
+	-->
         <div class="track-card__info-container">
           <i class="ri-album-line track-card__icon-album"></i>
-          <p class="track-card__album">Broken Machine (Deluxe)</p>
+	  <p class="track-card__album">{{ row[1] }}</p>
         </div>
       </div>
     </div>
-    <div class="track-card">
-      <div class="track-card__album-cover">
-        <img src="../static/images/oos_muse.jpg" alt="" />
-      </div>
-      <div class="track-card__info">
-        <div class="track-card__info-container">
-          <i class="ri-headphone-line"></i>
-          <h3 class="track-card__name">Megalomania</h3>
-        </div>
-        <div class="track-card__info-container">
-          <i class="ri-user-line track-card__icon-artist"></i>
-          <p class="track-card__artist">Muse</p>
-        </div>
-        <div class="track-card__info-container">
-          <i class="ri-album-line track-card__icon-album"></i>
-          <p class="track-card__album">Origin of Symmetry</p>
-        </div>
-      </div>
-    </div>
-    <div class="track-card">
-      <div class="track-card__album-cover">
-        <img src="../static/images/brokenmachine_nbt.jpg" alt="" />
-      </div>
-      <div class="track-card__info">
-        <div class="track-card__info-container">
-          <i class="ri-headphone-line"></i>
-          <h3 class="track-card__name">Broken Machine</h3>
-        </div>
-        <div class="track-card__info-container">
-          <i class="ri-user-line track-card__icon-artist"></i>
-          <p class="track-card__artist">Nothing But Thieves</p>
-        </div>
-        <div class="track-card__info-container">
-          <i class="ri-album-line track-card__icon-album"></i>
-          <p class="track-card__album">Broken Machine (Deluxe)</p>
-        </div>
-      </div>
-    </div>
-    <div class="track-card">
-      <div class="track-card__album-cover">
-        <img src="../static/images/Theresistance.jpg" alt="" />
-      </div>
-      <div class="track-card__info">
-        <div class="track-card__info-container">
-          <i class="ri-headphone-line"></i>
-          <h3 class="track-card__name">Broken Machine</h3>
-        </div>
-        <div class="track-card__info-container">
-          <i class="ri-user-line track-card__icon-artist"></i>
-          <p class="track-card__artist">Nothing But Thieves</p>
-        </div>
-        <div class="track-card__info-container">
-          <i class="ri-album-line track-card__icon-album"></i>
-          <p class="track-card__album">Broken Machine (Deluxe)</p>
-        </div>
-      </div>
-    </div>
-    <div class="track-card">
-      <div class="track-card__album-cover">
-        <img src="../static/images/willolfthepeople_muse.webp" alt="" />
-      </div>
-      <div class="track-card__info">
-        <div class="track-card__info-container">
-          <i class="ri-headphone-line"></i>
-          <h3 class="track-card__name">Verona</h3>
-        </div>
-        <div class="track-card__info-container">
-          <i class="ri-user-line track-card__icon-artist"></i>
-          <p class="track-card__artist">Muse</p>
-        </div>
-        <div class="track-card__info-container">
-          <i class="ri-album-line track-card__icon-album"></i>
-          <p class="track-card__album">Will of the People</p>
-        </div>
-      </div>
-    </div>
-    <div class="track-card">
-      <div class="track-card__album-cover">
-        <img src="../static/images/brokenmachine_nbt.jpg" alt="" />
-      </div>
-      <div class="track-card__info">
-        <div class="track-card__info-container">
-          <i class="ri-headphone-line"></i>
-          <h3 class="track-card__name">Broken Machine</h3>
-        </div>
-        <div class="track-card__info-container">
-          <i class="ri-user-line track-card__icon-artist"></i>
-          <p class="track-card__artist">Nothing But Thieves</p>
-        </div>
-        <div class="track-card__info-container">
-          <i class="ri-album-line track-card__icon-album"></i>
-          <p class="track-card__album">Broken Machine (Deluxe)</p>
-        </div>
-      </div>
-    </div>
+   {% if filt %}
+   </a>
+   {% endif %}
+    {% endfor %}
   </section>
   <section class="app__user-hymn user-hymn">
-    <h2 class="user-hymn__heading">My Hymn</h2>
+    <h2 class="user-hymn__heading">Play button breaker</h2>
     <hr class="user-hymn__divider" />
     <div class="track-card">
       <div class="track-card__album-cover">
@@ -153,15 +70,17 @@
       <div class="track-card__info">
         <div class="track-card__info-container">
           <i class="ri-headphone-line"></i>
-          <h3 class="track-card__name">Megalomania</h3>
+	  <h3 class="track-card__name">{{ tracks[0][0] }}</h3>
         </div>
+	<!-- This section will be implemented in the near future :)
         <div class="track-card__info-container">
           <i class="ri-user-line track-card__icon-artist"></i>
           <p class="track-card__artist">Muse</p>
         </div>
+	-->
         <div class="track-card__info-container">
           <i class="ri-album-line track-card__icon-album"></i>
-          <p class="track-card__album">Origin of Symmetry</p>
+	  <p class="track-card__album">{{ tracks[0][1] }}</p>
         </div>
       </div>
     </div>
