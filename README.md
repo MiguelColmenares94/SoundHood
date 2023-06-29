@@ -1,4 +1,4 @@
-# Soundhood
+<h1 align="center"> Soundhood </h1>
 
 ![Soundhood](./example/login.jpeg)
 
