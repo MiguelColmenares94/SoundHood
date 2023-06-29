@@ -1,6 +1,6 @@
 # Soundhood
 
-[Soundhood](example/login.jpeg)
+![Soundhood](./example/login.jpeg)
 
 ## Introduction
 
