@@ -36,7 +36,7 @@
   {% endif %}
     <div class="track-card">
       <div class="track-card__album-cover">
-        <img src="../static/images/brokenmachine_nbt.jpg" alt="" />
+	      <img src="{{ row[2] }}" alt="" />
       </div>
       <div class="track-card__info">
         <div class="track-card__info-container">
@@ -51,7 +51,7 @@
 	-->
         <div class="track-card__info-container">
           <i class="ri-album-line track-card__icon-album"></i>
-	  <p class="track-card__album">{{ row[1] }}</p>
+	  <a class="track-card__album" href="{{ row[1] }}" target="_blank">Listen on Spotify</a>
         </div>
       </div>
     </div>
@@ -65,7 +65,7 @@
     <hr class="user-hymn__divider" />
     <div class="track-card">
       <div class="track-card__album-cover">
-        <img src="../static/images/oos_muse.jpg" alt="" />
+	      <img src="{{ tracks[0][2] }}" alt="" />
       </div>
       <div class="track-card__info">
         <div class="track-card__info-container">
@@ -80,7 +80,7 @@
 	-->
         <div class="track-card__info-container">
           <i class="ri-album-line track-card__icon-album"></i>
-	  <p class="track-card__album">{{ tracks[0][1] }}</p>
+	  <a class="track-card__album" href="{{ tracks[0][1] }}" target="_blank">Listen on Spotify</a>
         </div>
       </div>
     </div>

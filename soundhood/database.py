@@ -38,7 +38,7 @@ def save_user_info(connection, refresh_token, user_info, track_info, album_info,
 
     cursor = connection.cursor()
     cursor.execute(query_user, values)
-    cursor.commit()
+    connection.commit()
     cursor.close()
 
     #data to save into album table
@@ -275,7 +275,7 @@ def get_top_tracks_db(cursor, u_id=None):
             return ('There are no Top Tracks')
 
     if u_id:
-        query = "SELECT t.track_name, t.album_name FROM Track AS t \
+        query = "SELECT t.track_name, t.spotify_url, t.cover_image FROM Track AS t \
                  INNER JOIN User_TopTrack AS ut ON ut.track_id = t.track_id WHERE ut.user_id = %s"
         cursor.execute(query, (u_id,))
         rows = cursor.fetchall()
@@ -283,10 +283,10 @@ def get_top_tracks_db(cursor, u_id=None):
         if rows:
             tracks_album_list = []
             for row in rows:
-                track_name, album_name = row
-                if not track_name or not album_name:
+                track_name, spotify_url, cover_image = row
+                if not track_name or not spotify_url or not cover_image:
                     continue
-                tracks_album_list.append([track_name, album_name])
+                tracks_album_list.append([track_name, spotify_url, cover_image])
 
             print(tracks_album_list)
             return tracks_album_list
