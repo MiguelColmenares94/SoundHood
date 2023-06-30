@@ -123,14 +123,16 @@
     }
   }
 
-  &__user-card-swapper {
+  &__user-card-swiper {
+    margin-top: 6rem;
 	max-width: 450px;
 	height: 500px;
 	margin-inline: auto;
 	position: relative;
   }
 
-  &__card-swipper-buttons {
+  &__card-swipe-buttons {
+    margin-top: 1rem;
 	  max-width: var(--card-width);
 	  display: flex;
 	  justify-content: space-around;
