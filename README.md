@@ -54,6 +54,11 @@ sudo apt install mysql-server
 sudo systemctl start mysql
 ```
 
+6. Load all environment variables
+
+```
+source env.txt
+```
 NOTE: if you want to close the virtual environment just type ```deactivate``` in your CLI
 
 ## Usage
@@ -70,6 +75,14 @@ After that the web server will start running, by default it runs in ```http://12
 
 In order for the app to work properly you need to [create an app](https://developer.spotify.com/documentation/web-api/concepts/apps) in spotify developer dashboard and set some environment variables:
 
+1. Create a file named env.txt
+
+```
+vim env.txt
+```
+
+2. Then add all these lines into env.txt
+
 ```
 export FLASK_APP=run.py
 export CLIENT_ID=[client id given by spotify after created the app]
@@ -84,6 +97,11 @@ export NAME_DB=[your DB name]
 export POOL_NAME=[your pool connection name]
 export POOL_SIZE=5 (you can modify the value)
 ```
+
+
+## Contribute
+
+We are open to contributions, team work is the key to success, just write us (links in credit section)
 
 ## License
 
