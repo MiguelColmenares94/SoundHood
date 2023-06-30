@@ -34,6 +34,8 @@
   --fw-bold: 700;
   --fw-xbold: 800;
   --fw-black: 900;
+  --card-width: 450px;
+  --card-height: 500px;
 }
 
 /* 
@@ -184,6 +186,12 @@ label {
   border-radius: 10px;
 }
 
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 .fs-300 {
   font-weight: 300;
 }
@@ -328,6 +336,11 @@ label {
     justify-items: center;
   }
 }
+.app__card-wrapper {
+  width: 450px;
+  height: 500px;
+  position: absolute;
+}
 .app__user-card-scroller {
   max-width: 450px;
   margin-inline: auto;
@@ -341,6 +354,24 @@ label {
 }
 .app__user-card-scroller > * {
   scroll-snap-align: start;
+}
+.app__user-card-swapper {
+  max-width: 450px;
+  height: 500px;
+  margin-inline: auto;
+  position: relative;
+}
+.app__card-swipper-buttons {
+  max-width: var(--card-width);
+  display: flex;
+  justify-content: space-around;
+  margin-inline: auto;
+}
+.app__card-swipper-buttons > button {
+  border: 0.4vmin solid var(--slate-300);
+  border-radius: 100%;
+  height: 10vmin;
+  width: 10vmin;
 }
 
 .button {
@@ -601,6 +632,24 @@ label {
   text-decoration: underline;
 }
 
+.swipe-button {
+  color: var(--slate-300);
+}
+.swipe-button_hate {
+  color: #fd3846;
+}
+.swipe-button_love {
+  color: #32f07a;
+}
+
+#hate-button {
+  border-color: #fd3846;
+}
+
+#love-button {
+  border-color: #32f07a;
+}
+
 .userbio {
   display: flex;
   flex-wrap: wrap;
@@ -654,6 +703,7 @@ label {
 .user-card {
   position: relative;
   max-width: min(450px, 100%);
+  transition: transform 400ms ease;
 }
 .user-card__pfp-wrapper {
   position: relative;
@@ -696,6 +746,12 @@ label {
 .user-card__age {
   font-size: var(--fs-sm);
   padding-block: 0.125rem;
+}
+.user-card[data-status=unknown] {
+  transform: scale(0);
+}
+.user-card[data-status=after] {
+  transform: translateX(50%) scale(0);
 }
 
 .card-swipper {
