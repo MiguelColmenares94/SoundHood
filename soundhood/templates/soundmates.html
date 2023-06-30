@@ -5,44 +5,58 @@
 
 <!-- Home -->
 {% block main %}
-<div class="app__user-card-scroller">
+<div class="app__user-card-swapper">
 	{% for user_id in matches %}
 		{% set user_id = others.get(user_id) %}
+<!--
  <a href="http://127.0.0.1:5000/user_profile/{{ user_id.get('id') }}">
-  <article
-    class="user-card"
-    style="--i: 0"
-    >
-    <div class="user-card__user">
-      <div class="user-card__pfp-wrapper">
-        <img
-        class="user-card__pfp"
-        id="user-pfp"
-        src="{{ user_id.get('profile_photo') }}"
-        alt="{{ user_id.get('name') }}"
-        />
-      </div>
-    <div class="user-card__profile">
-      <div class="user-card__mini-pfp-wrapper">
-        <img
-        class="user-card__mini-pfp"
-        src="{{ user_id.get('profile_photo') }}"
-        alt="{{ user_id.get('name') }}"
-        />
-      </div>
-      <div class="user-card__username">
-        <p>{{ user_id.get('name') }}</p>
-        <p class="user-card__age userbio__age" style="background: {% if user_id.get('gender') == 'men' %}#2986cc{% endif %};">
-        <i class="ri-{{ user_id.get('gender') }}-line"></i> 24
-        </p>
-      </div>
-      <div class="user-card__location">
-        <i class="ri-map-pin-line"></i> {{ user_id.get('country') }}
-      </div>
-    </div>
-    </div>
-  </article>
-  </a>
+-->
+	<div class="app__card-wrapper">
+		<article
+			class="user-card"
+			style="--i: 0; cursor: pointer;"
+			onclick="window.location.href='http://127.0.0.1:5000/user_profile/{{ user_id.get('id') }}'"
+			data-index="{{ loop.index0 }}"
+			data-status="{% if loop.first %}active{% else %}unknown{% endif %}"
+			>
+			<div class="user-card__user">
+				<div class="user-card__pfp-wrapper">
+					<img
+					class="user-card__pfp"
+					id="user-pfp"
+					src="{{ user_id.get('profile_photo') }}"
+					alt="{{ user_id.get('name') }}"
+					/>
+				</div>
+			<div class="user-card__profile">
+				<div class="user-card__mini-pfp-wrapper">
+					<img
+					class="user-card__mini-pfp"
+					src="{{ user_id.get('profile_photo') }}"
+					alt="{{ user_id.get('name') }}"
+					/>
+				</div>
+				<div class="user-card__username">
+					<p>{{ user_id.get('name') }}</p>
+					<p class="user-card__age userbio__age" style="background: {% if user_id.get('gender') == 'men' %}#2986cc{% endif %};">
+					<i class="ri-{{ user_id.get('gender') }}-line"></i> 24
+					</p>
+				</div>
+				<div class="user-card__location">
+					<i class="ri-map-pin-line"></i> {{ user_id.get('country') }}
+				</div>
+			</div>
+			</div>
+		</article>
+	</div>
   {% endfor %}
 </div>
+<div class="app__card-swipper-buttons">
+	  <button id="hate-button" onclick="handleLoveClick()">
+		  <i class="ri-close-line ri-3x swipe-button swipe-button_hate"></i>
+	  </button>
+	  <button id="love-button" onclick="handleLoveClick()">
+		  <i class="ri-heart-line ri-3x swipe-button swipe-button_love"></i>
+	  </button>
+  </div>
 {% endblock main %}
