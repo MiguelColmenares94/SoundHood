@@ -12,11 +12,13 @@
 		<!--
 			<a href="http://127.0.0.1:5000/user_profile/{{ user_id.get('id') }}">
 		-->
-		<div class="app__card-wrapper">
+		<div class="app__card-wrapper"
+			style="z-index: {{ 1 - loop.index0 }};"	
+			onclick="redirectToUserProfile('{{ user_id.get('id') }}')"
+		>
 			<article
 				class="user-card"
 				style="--i: 0; cursor: pointer;"
-				onclick="window.location.href='http://127.0.0.1:5000/user_profile/{{ user_id.get('id') }}'"
 				data-index="{{ loop.index0 }}"
 				data-status="{% if loop.first %}active{% else %}unknown{% endif %}"
 				>
@@ -54,7 +56,7 @@
 	</div>
 	<div class="app__card-swipe-buttons">
 		<button id="hate-button" onclick="handleLoveClick()">
-			<i class="ri-close-line ri-4x swipe-button swipe-button_hate"></i>
+			<i class="ri-close-line ri-3x swipe-button swipe-button_hate"></i>
 		</button>
 		<button id="love-button" onclick="handleLoveClick()">
 			<i class="ri-heart-line ri-3x swipe-button swipe-button_love"></i>
