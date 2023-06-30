@@ -12,15 +12,17 @@
 		<!--
 			<a href="http://127.0.0.1:5000/user_profile/{{ user_id.get('id') }}">
 		-->
-		<div class="app__card-wrapper"
-			style="z-index: {{ 1 - loop.index0 }};"	
+		<div class="app__card-wrapper">
+			<!--
+			style="z-index: {{ 10 - loop.index0 }}; cursor: pointer;"	
 			onclick="redirectToUserProfile('{{ user_id.get('id') }}')"
-		>
+			-->
 			<article
 				class="user-card"
 				style="--i: 0; cursor: pointer;"
 				data-index="{{ loop.index0 }}"
 				data-status="{% if loop.first %}active{% else %}unknown{% endif %}"
+				onclick="redirectToUserProfile('{{ user_id.get('id') }}')"
 				>
 				<div class="user-card__user">
 					<div class="user-card__pfp-wrapper">
