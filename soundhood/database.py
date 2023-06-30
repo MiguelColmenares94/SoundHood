@@ -10,7 +10,6 @@ def create_connection():
         'database': 'soundhood',
         'pool_name': 'soundhood_pool',
         'pool_size': 5
-        
     }
     
     try:
@@ -36,9 +35,10 @@ def save_user_info(connection, refresh_token, user_info, track_info, album_info,
 
     query_user = "INSERT IGNORE  INTO User (email, spotify_user_id, user_name, profile_photo, country, refresh_token) VALUES (%s, %s, %s, %s, %s, %s)"
     values = (email, spotify_user_id, user_name, profile_photo, country, refresh_token)
-    
+
     cursor = connection.cursor()
     cursor.execute(query_user, values)
+    connection.commit()
     cursor.close()
 
     #data to save into album table
@@ -50,9 +50,9 @@ def save_user_info(connection, refresh_token, user_info, track_info, album_info,
         cover_image = item.get('album').get('images')[0].get('url')
         spotify_url = item.get('album').get('external_urls').get('spotify')
 
-        query_album = "INSERT IGNORE INTO Album (album_name, cover_image, spotify_url) VALUES (%s, %s, %s)"
+        query_album = "INSERT IGNORE INTO Album (spotify_album_id, album_name, cover_image, spotify_url) VALUES (%s, %s, %s, %s)"
         values = (spotify_album_id, album_name, cover_image, spotify_url)
-        
+
         cursor = connection.cursor()
         cursor.execute(query_album, values)
         cursor.close()
@@ -70,9 +70,11 @@ def save_user_info(connection, refresh_token, user_info, track_info, album_info,
 
         query_track = "INSERT IGNORE INTO Track (spotify_track_id, track_name, spotify_url, cover_image) VALUES (%s, %s, %s, %s)"
         values = (spotify_track_id, track_name, spotify_url, cover_image)
+        print(values)
         
         cursor = connection.cursor()
         cursor.execute(query_track, values)
+        connection.commit()
         cursor.close()
 
     #data to save in playlist table
@@ -80,9 +82,9 @@ def save_user_info(connection, refresh_token, user_info, track_info, album_info,
     
     for item in items:
         spotify_playlist_id = item.get('id')
-        owner_id = int(item.get('owner').get('id')) if item.get('owner') else None
+        owner_id = item.get('owner').get('id') if item.get('owner') else None
         spotify_url = item.get('external_urls').get('spotify') if item.get('external_urls') else None
-        cover_image = item.get('images')[0].get('url')
+        cover_image = item.get('images')[0].get('url') if item.get('images') else None
 
         query_playlist = "INSERT IGNORE INTO Playlist (spotify_playlist_id, owner_id, spotify_url, cover_image) VALUES (%s, %s, %s, %s)"
         values = (spotify_playlist_id, owner_id, spotify_url, cover_image)
@@ -112,8 +114,8 @@ def save_user_info(connection, refresh_token, user_info, track_info, album_info,
 
         query_top_track = "INSERT IGNORE INTO User_TopTrack (user_id, track_id) VALUES (%s, %s)"
 
-        values = (user_id, track_id)
-        
+        values = (user_id[0], track_id[0])
+
         cursor = connection.cursor()
         cursor.execute(query_top_track, values)
         cursor.close()
@@ -273,7 +275,7 @@ def get_top_tracks_db(cursor, u_id=None):
             return ('There are no Top Tracks')
 
     if u_id:
-        query = "SELECT t.track_name, t.album_name FROM Track AS t \
+        query = "SELECT t.track_name, t.spotify_url, t.cover_image FROM Track AS t \
                  INNER JOIN User_TopTrack AS ut ON ut.track_id = t.track_id WHERE ut.user_id = %s"
         cursor.execute(query, (u_id,))
         rows = cursor.fetchall()
@@ -281,10 +283,10 @@ def get_top_tracks_db(cursor, u_id=None):
         if rows:
             tracks_album_list = []
             for row in rows:
-                track_name, album_name = row
-                if not track_name or not album_name:
+                track_name, spotify_url, cover_image = row
+                if not track_name or not spotify_url or not cover_image:
                     continue
-                tracks_album_list.append([track_name, album_name])
+                tracks_album_list.append([track_name, spotify_url, cover_image])
 
             print(tracks_album_list)
             return tracks_album_list

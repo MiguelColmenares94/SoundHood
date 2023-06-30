@@ -50,4 +50,25 @@
     color: var(--slate-400);
     text-decoration: underline;
   }
+
+}
+
+.swipe-button {
+	color: var(--slate-300);
+
+	&_hate {
+		color: #fd3846;
+	}
+
+	&_love {
+		color: #32f07a;
+	}
+}
+
+#hate-button {
+	border-color: #fd3846;
+}
+
+#love-button {
+	border-color: #32f07a;
 }

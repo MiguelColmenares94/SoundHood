@@ -56,3 +56,9 @@ label {
   background-color: var(--slate-600);
   border-radius: 10px;
 }
+
+button {
+	background: transparent;
+	border: none;
+	cursor: pointer;
+}
