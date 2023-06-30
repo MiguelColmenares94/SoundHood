@@ -99,6 +99,12 @@
     //grid-template-rows: 1fr 0 0 0 0;
   }
 
+  &__card-wrapper {
+	width: 450px;
+	height: 500px;
+	position: absolute;
+  }
+
   &__user-card-scroller {
     max-width: 450px;
     margin-inline: auto;
@@ -116,4 +122,26 @@
       scroll-snap-align: start;
     }
   }
+
+  &__user-card-swapper {
+	max-width: 450px;
+	height: 500px;
+	margin-inline: auto;
+	position: relative;
+  }
+
+  &__card-swipper-buttons {
+	  max-width: var(--card-width);
+	  display: flex;
+	  justify-content: space-around;
+	  margin-inline: auto;
+
+	  & > button {
+		  border: 0.4vmin solid var(--slate-300);
+		  border-radius: 100%;
+		  height: 10vmin;
+		  width: 10vmin;
+	  }
+  }
 }
+
