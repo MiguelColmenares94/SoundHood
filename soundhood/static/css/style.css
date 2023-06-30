@@ -355,19 +355,21 @@ button {
 .app__user-card-scroller > * {
   scroll-snap-align: start;
 }
-.app__user-card-swapper {
+.app__user-card-swiper {
+  margin-top: 6rem;
   max-width: 450px;
   height: 500px;
   margin-inline: auto;
   position: relative;
 }
-.app__card-swipper-buttons {
+.app__card-swipe-buttons {
+  margin-top: 1rem;
   max-width: var(--card-width);
   display: flex;
   justify-content: space-around;
   margin-inline: auto;
 }
-.app__card-swipper-buttons > button {
+.app__card-swipe-buttons > button {
   border: 0.4vmin solid var(--slate-300);
   border-radius: 100%;
   height: 10vmin;
@@ -751,7 +753,7 @@ button {
   transform: scale(0);
 }
 .user-card[data-status=after] {
-  transform: translateX(50%) scale(0);
+  transform: translateX(75%) scale(0);
 }
 
 .card-swipper {
