@@ -6,6 +6,8 @@
 
 Soundhood is a web application that leverages [Spotify's API](https://developer.spotify.com/documentation/web-api) to collect data from users, such as the songs they like the most, the most played songs, the albums they like the most, and much more. It analyzes this data and provides personalized recommendations to users based on their music preferences. Soundhood identifies other users who share similar musical tastes and suggests possible musical matches.
 
+Read this [Article]()https://www.linkedin.com/pulse/we-sound-better-together-introducing-soundhood-app-music-miguel%3FtrackingId=bx0TVu3tTmOImmOkAk6FHQ%253D%253D/?trackingId=bx0TVu3tTmOImmOkAk6FHQ%3D%3D to know more about our app. 
+You can see a video demonstration of Soundhood [here](https://youtu.be/0flNVK7fxNc)
 ## Features
 
 - User Authentication
@@ -89,8 +91,8 @@ MIT License
 
 ## Credits
 
-- [Miguel Colmenares](5693@holbertonstudents.com)
-- [Marcelo Vizcarra](5705@holbertonstudents.com)
+- [Miguel Colmenares](https://www.linkedin.com/in/miguel-colmenaresp/)
+- [Marcelo Vizcarra](https://www.linkedin.com/in/marcelo-vizcarra-7459841b1/)
 
 ## Roadmap
 
