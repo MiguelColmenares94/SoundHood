@@ -57,6 +57,10 @@
     padding-block: 0.125rem;
   }
 
+  &[data-status="active"] {
+    z-index: 10;
+  }
+
   &[data-status="unknown"] {
 	transform: scale(0);
   }

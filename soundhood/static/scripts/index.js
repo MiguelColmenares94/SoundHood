@@ -17,3 +17,7 @@ const handleLoveClick = () => {
 
   activeIndex = nextIndex;
 }
+
+const redirectToUserProfile = (userId) => {
+  window.location.href = 'http://127.0.0.1:5000/user_profile/' + userId;
+}

@@ -750,6 +750,9 @@ button {
   font-size: var(--fs-sm);
   padding-block: 0.125rem;
 }
+.user-card[data-status=active] {
+  z-index: 10;
+}
 .user-card[data-status=unknown] {
   transform: scale(0);
 }
